@@ -1,0 +1,78 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+{% include 'nav.html'%}
+
+<div class="container">
+    <div class="col-md-12 offset mt-5 ">
+        <div class="jumbotron shadow-lg">
+            <h1 class="display-4">Administration </h1>
+            
+            <hr class="my-4">
+
+                <table class="table shadow-lg align-middle table-rounded bg-white mt-5">
+                    <thead class="border-bottom font-weight-bold bg-dark text-light">
+                        <tr>
+                            <td>ID</td>
+                            <td>Detail</td>
+                            <td>Username</td>
+                            <td>Password</td>
+                            <td>Role</td>
+                            
+                            <td><a href="{% url 'insert' %}" class="btn btn-outline-success">
+                                <i class="fas fa-plus"></i> Add
+                            </a></td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in user_list %}
+                            <tr>
+                                <td>
+                                    {{u.id}}
+                                  </td>
+                                <td>
+                                <div class="d-flex align-items-center">
+                                    <img
+                                        src="{% static 'images/7070.jpg' %}"
+                                        alt=""
+                                        style="width: 45px; height: 45px"
+                                        class="rounded-circle"
+                                        />
+                                    <div class="ms-3">
+                                      <p class="fw-bold ms-2 mb-1">{{u.name}}</p>
+                                      <p class="text-muted ms-2 mb-0">{{u.email}}</p>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>{{u.username}}</td>
+                                <td>{{u.password}}</td>
+                                <td>
+                                    {% if 1 == u.role_id %}
+                                        <span class="badge badge-info rounded-pill">{{u.role}}</span>
+                                    {% else %}
+                                        <span class="badge badge-warning rounded-pill">{{u.role}}</span>
+                                    {% endif %}
+                                    
+                                  </td>
+                                <td>
+                                    <a href="{% url 'update' u.id %}" class="btn text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i>
+                                    </a>
+                                    <form action="{% url 'delete' u.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn">
+                                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                        </button>
+                                    </form>
+                                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div
+{% endblock content %}

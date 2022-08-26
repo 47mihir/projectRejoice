@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% include 'nav.html'%}
+
+
+<div class="container mt-5">
+
+    <table class="table table-bordered shadow-lg">
+      
+      <thead class="bg-dark border-0 text-light">
+        <th>Name</th> 
+        <th>Detail</th> 
+      </thead>
+      <tbody>
+        {% for u in user_list %}
+          <tr>
+            <th scope="row">ID</th>
+            <td>{{u.id}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">Name</th>
+            <td>{{u.name}}</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">username</th>
+            
+            <td>{{u.username}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            
+            <td>{{u.email}} </td>
+          </tr>
+          <tr>
+            <th scope="row">Password</th>
+            
+            <td>{{u.password}} </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+  </div>
+  
+{% endblock content %}

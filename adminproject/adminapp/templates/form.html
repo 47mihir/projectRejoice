@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'nav.html'%}
+<div class="container">
+    <div class="col-md-12 offset mt-5 ">
+        <div class="jumbotron shadow-lg">
+            <h1 class="display-4">Administration </h1>
+            
+            <hr class="my-4">
+                <form action="" method="post" autocomplete="off">
+                    {% csrf_token %}
+                {{form.name|as_crispy_field}}
+                {{form.username|as_crispy_field}}
+                {{form.email|as_crispy_field}}
+                {{form.password|as_crispy_field}}
+                {{form.role|as_crispy_field}}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'list' %}" class="btn btn-primary"> Back </a>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
